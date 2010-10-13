@@ -39,6 +39,7 @@ end
 langs.each do |i18n|
   java = RagelTask.new('java', i18n)
   rb   = RagelTask.new('rb', i18n)
+  cs   = RagelTask.new('cs', i18n)
 
   lang_country = i18n.iso_code.split(/-/)
   suffix = lang_country.length == 1 ? lang_country[0] : "#{lang_country[0]}_#{lang_country[1].upcase}"
@@ -52,7 +53,7 @@ langs.each do |i18n|
       end
     end
   end
-  file 'lib/gherkin.jar' => [java.target, rb.target, java_properties]
+  file 'lib/gherkin.jar' => [java.target, rb.target, cs.target, java_properties]
 
   begin
   if !defined?(JRUBY_VERSION)
